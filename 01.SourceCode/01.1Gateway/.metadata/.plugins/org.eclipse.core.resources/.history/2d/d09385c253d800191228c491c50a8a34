@@ -1,0 +1,27 @@
+package cob.com.cobgateway;
+
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
+import org.springframework.web.bind.annotation.RestController;
+
+/**
+ * @author ldman
+ * application gateway
+ */
+@SpringBootApplication
+@EnableAutoConfiguration
+@EnableZuulProxy
+@RestController
+public class App 
+{
+    public static void main( String[] args )
+    {
+    	new SpringApplicationBuilder(App.class).web(true).run(args);
+    }
+    
+    @Bean
+	public AlwaysSampler defaultSampler() {
+	  return new AlwaysSampler();
+	}
+}

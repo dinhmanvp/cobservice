@@ -1,0 +1,35 @@
+spring:  
+  application:
+    name: accounts
+  data:
+#config mongo DB log
+    mongodb:
+      host: localhost
+      port: 27017
+      username: cobdblog
+      password: cobdblog
+      database: cobdblog
+      authentication-database: cobdblog
+      collectionrefix: accounts_
+      collectiondetailrefix: accounts_detail_
+#config postgresql DB 
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: customers
+    password: customers
+#    driver-class-name: oracle.jdbc.OracleDriver
+    
+server:  
+  port: ${PORT:7788}  
+#config register discovery enakena service
+eureka:  
+  client:
+    serviceUrl:
+      defaultZone: ${DISCOVERY_URL:http://localhost:8761}/eureka/
+  instance:
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 2
+#config register enable r enakena service          
+ribbon:
+  eureka:
+    enabled: true

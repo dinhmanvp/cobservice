@@ -1,0 +1,56 @@
+package cob.com.core.ws.rest;
+
+import java.util.HashMap;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+
+
+import cob.com.core.utils.ConfigUtility;
+import cob.com.core.ws.models.ResponseMessage;
+
+/**
+ * @author ldman 2019/07/06 REST API
+ */
+@RestController
+public class Api {
+
+	@Autowired
+	private ConfigUtility configUtil;
+	
+
+
+	@RequestMapping(path = "/testApi", method = RequestMethod.GET)
+	public ResponseEntity<ResponseMessage> testApi() {
+		ResponseMessage responseMessage = new ResponseMessage();
+		ResponseEntity<ResponseMessage> respone = new ResponseEntity<ResponseMessage>(responseMessage, HttpStatus.OK);
+		//;
+		
+		respone.getBody().setResponseCode(configUtil.getProperty("cob.success.code"));
+		respone.getBody().setResponseMessage(configUtil.getProperty("cob.success.msg"));
+		respone.getBody().setResponseData("contact info dinhmanuit@gmail.com");
+		return respone;
+	}
+	
+	@RequestMapping(path = "/testEntities", method = RequestMethod.GET)
+	public ResponseEntity<ResponseMessage> testEntities() {
+		ResponseMessage responseMessage = new ResponseMessage();
+		ResponseEntity<ResponseMessage> respone = new ResponseEntity<ResponseMessage>(responseMessage, HttpStatus.OK);
+		//
+		
+		TbAcount result = accounts.getAcount(Long.parseLong("1"));
+		
+		HashMap<String, Object> hReturn = new HashMap<>();
+		hReturn.put("countlist", result);
+		
+		respone.getBody().setResponseCode(configUtil.getProperty("cob.success.code"));
+		respone.getBody().setResponseMessage(configUtil.getProperty("cob.success.msg"));
+		respone.getBody().setResponseData(hReturn);
+		return respone;
+	}
+}

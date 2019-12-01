@@ -1,0 +1,5 @@
+package cob.com.core.log.models;
+
+public class AddLogInfo {
+
+}

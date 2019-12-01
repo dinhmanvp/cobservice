@@ -1,0 +1,10 @@
+package cob.com.accounts.ws.rest;
+
+/**
+ * @author ldman 2019/07/06
+ * REST API
+ */
+@RestController
+public class Api {
+
+}

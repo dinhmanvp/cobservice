@@ -1,0 +1,5 @@
+package cob.com.core.utils;
+
+public class StringUtility {
+
+}

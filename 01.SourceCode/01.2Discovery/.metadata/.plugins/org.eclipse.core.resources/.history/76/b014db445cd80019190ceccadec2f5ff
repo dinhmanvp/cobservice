@@ -1,0 +1,15 @@
+package cob.com.cobregister;
+
+/**
+ * @author ldman
+ * application discovery service
+ */
+@SpringBootApplication
+@EnableEurekaServer
+public class App 
+{
+    public static void main( String[] args )
+    {
+        System.out.println( "Hello World!" );
+    }
+}

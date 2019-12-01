@@ -1,0 +1,17 @@
+package cob.com.accounts;
+
+/**
+ * @author ldman 2019/07/06
+ * customers module service
+ */
+@SpringBootApplication
+@EnableEurekaClient
+@EnableFeignClients
+@EnableAsync
+public class App 
+{
+    public static void main( String[] args )
+    {
+        System.out.println( "Hello World!" );
+    }
+}

@@ -1,0 +1,7 @@
+INDEX VERSION 1.4+E:\LamViec2\clickofbankservices\trunk\01.SourceCode\01.4Core\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+1896386436.index
+120604837.index
+3765064954.index
+2053445169.index
+778428087.index
+1917762718.index

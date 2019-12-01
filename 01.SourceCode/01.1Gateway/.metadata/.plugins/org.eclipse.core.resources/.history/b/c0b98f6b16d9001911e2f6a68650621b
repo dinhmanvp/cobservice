@@ -1,0 +1,51 @@
+spring:
+  application:
+    name: cobgateway
+  cloud:
+    bus:
+      enabled: false
+    config:
+      enabled: false
+info:
+  component: Edge Server
+  
+endpoints:
+  restart:
+    enabled: true
+#  shutdown:
+#    enabled: true
+  refresh:
+    enabled: true
+#  health:
+#    sensitive: false
+
+zuul:
+  prefix: /api/v1
+#  routes:
+#    customersmanagement: 
+#      path: /**
+# serviceId as registed with Eureka. Enabled and used when ribbon.eureka.enabled is true
+ #     serviceId: customersmanagement
+# zuul.routes.<the route>.url used when ribbon.eureka.enabled is false, serviceId is disabled.
+#      url: http://localhost:8600/
+# stripPrefix set to true if context path is set to /
+#      stripPrefix: true
+
+# ribbon.eureka.enabled: false
+#ribbon:
+#  eureka:
+#    enabled: true
+
+eureka:
+  client:
+    serviceUrl:
+#local
+#      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://localhost:8761/cobregister/eureka/
+#dev
+#      defaultZone: http://192.168.100.201:8761/eureka/
+    registerWithEureka: false
+    fetchRegistry: true
+    
+server:
+  port: 8090

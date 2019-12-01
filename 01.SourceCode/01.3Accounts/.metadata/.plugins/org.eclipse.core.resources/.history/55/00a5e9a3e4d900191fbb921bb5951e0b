@@ -1,0 +1,26 @@
+package cob.com.accounts.ws.rest;
+
+import org.springframework.web.bind.annotation.RestController;
+
+/**
+ * @author ldman 2019/07/06
+ * REST API
+ */
+@RestController
+public class Api {
+	@RequestMapping("/test1")
+	public String test1Api() {		
+		
+		AddLogDetailInfo testApiDetail = new AddLogDetailInfo();
+		testApiDetail.setLogDetailId(LoggingAspect.logId);
+		testApiDetail.set_detailname("testApi1");
+		testApiDetail.set_detail("noi dung can nghi log");
+		
+		String timeStamp = new SimpleDateFormat("yyyyMMdd").format(Calendar.getInstance().getTime());		
+		String collectionName = enviroment.getProperty("spring.data.mongodb.collectiondetailrefix") + timeStamp;
+		
+		LogMongoTemplate.logInfo(testApiDetail, collectionName);
+		
+		return "test 1 Api";
+	}
+}

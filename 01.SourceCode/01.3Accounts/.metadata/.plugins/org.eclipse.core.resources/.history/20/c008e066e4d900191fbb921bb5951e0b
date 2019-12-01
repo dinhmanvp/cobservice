@@ -1,0 +1,8 @@
+#Common
+ecp.success.code=000
+ecp.success.msb=Giao dịch thành công
+#User
+ecp.authentication.timeout.code=101
+ecp.authentication.timeout.msg=Mã xác thực hết thời gian hiệu lực
+ecp.customer.id.invalid.code=102
+ecp.customer.id.invalid.msg=CMND không hợp lệ

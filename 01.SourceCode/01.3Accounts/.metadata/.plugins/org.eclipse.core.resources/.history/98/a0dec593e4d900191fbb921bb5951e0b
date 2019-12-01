@@ -1,0 +1,5 @@
+package cob.com.accounts.ws.rest;
+
+public class Api {
+
+}

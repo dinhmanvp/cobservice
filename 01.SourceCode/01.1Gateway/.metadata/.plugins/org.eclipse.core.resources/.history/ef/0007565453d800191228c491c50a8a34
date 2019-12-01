@@ -1,0 +1,17 @@
+package cob.com.cobgateway;
+
+/**
+ * @author ldman
+ * application gateway
+ */
+@SpringBootApplication
+@EnableAutoConfiguration
+@EnableZuulProxy
+@RestController
+public class App 
+{
+    public static void main( String[] args )
+    {
+        System.out.println( "Hello World!" );
+    }
+}

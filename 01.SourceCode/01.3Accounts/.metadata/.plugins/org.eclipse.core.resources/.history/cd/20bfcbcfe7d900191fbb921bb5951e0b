@@ -1,0 +1,38 @@
+package cob.com.accounts.ws.rest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import cob.com.accounts.utils.ConfigUtility;
+import cob.com.accounts.ws.models.ResponseMessage;
+
+/**
+ * @author ldman 2019/07/06
+ * REST API
+ */
+@RestController
+public class Api {
+	
+	@Autowired
+	private ConfigUtility configUtil;
+	
+	@RequestMapping("/test")
+	public String test1Api() {
+		return "contact info dinhmanuit@gmail.com";
+	}
+	
+	@RequestMapping(path = "/testApi", method = RequestMethod.GET)
+	public ResponseEntity<ResponseMessage> FunctionSyncList() {
+		ResponseMessage responseMessage = new ResponseMessage();
+		ResponseEntity<ResponseMessage> respone = new ResponseEntity<ResponseMessage>(responseMessage, HttpStatus.OK);
+		//
+		
+		respone.getBody().setResponseCode(configUtil.getProperty("ecp.success.code"));
+		respone.getBody().setResponseMessage(configUtil.getProperty("ecp.success.msg"));
+		return respone;
+	}
+}
