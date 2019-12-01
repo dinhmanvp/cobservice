@@ -268,10 +268,42 @@ public class Api {
 		
 		//log.info("input getMydeal:" + jObject.getAsString());
 		
-		List<MydealInfo> dealinfo = business.getMydeal(jObject);
+		int pageNumber = 1;
+		if (!StringUtility.isEmpty(jObject.get(Parameter.PAGE_NUMBER)))
+			pageNumber = jObject.get(Parameter.PAGE_NUMBER).getAsInt();
 
-		HashMap<String, List<MydealInfo>> result = new HashMap<>();
+		// pageSize
+		int pageSize = 1;
+		if (!StringUtility.isEmpty(jObject.get(Parameter.PAGE_SIZE)))
+		{
+			pageSize = jObject.get(Parameter.PAGE_SIZE).getAsInt();	
+			if(pageSize == 0) {
+				pageSize = 1;
+			}
+		}
+		int totalRow = 0;
+		BigDecimal totalpages = new BigDecimal(0);
+		
+		List<MydealInfo> dealinfo = business.getMydeal(jObject);
+		
+		Map<Object, Object> pageInfo = new HashMap<Object, Object>();
+		if (dealinfo.size() > 0) {
+			totalRow = dealinfo.get(0).getTotalRows();
+			
+//			totalpages = new BigDecimal(totalRow).divide(new BigDecimal(pageSize)).setScale(2,
+//					RoundingMode.CEILING);
+			totalpages = new BigDecimal(totalRow).divide(new BigDecimal(pageSize), 2, RoundingMode.UP);
+			totalpages = totalpages.setScale(0, RoundingMode.UP);
+			
+		}
+		pageInfo.put("totalrows", totalRow);
+		pageInfo.put("pagesize", pageSize);
+		pageInfo.put("currentpage", pageNumber);
+		pageInfo.put("totalpages", totalpages);
+
+		HashMap<String, Object> result = new HashMap<>();
 		result.put("mydealInfos", dealinfo);
+		result.put("pageInfo", pageInfo);
 
 		respone.getBody().setResponseCode(configUtil.getProperty("cob.business.getMydeal.success.code"));
 		respone.getBody().setResponseMessage(configUtil.getProperty("cob.business.getMydeal.success.msg"));
