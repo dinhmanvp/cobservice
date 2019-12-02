@@ -92,7 +92,7 @@ BEGIN
 	WHERE pac.n_is_approved = 1 
 	AND pac.n_is_deleted <> 1
 	AND pac.s_partner_id = partnerid
-	AND sub.is_off IS NULL
+	AND COALESCE(sub.is_off,0) = 0
 	AND CASE WHEN sub.s_user_id IS NULL
 				THEN TRUE 
 			ELSE  
